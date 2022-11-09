@@ -1,0 +1,64 @@
+@use '../utils/fonts' as font;
+@use '../utils/functions' as f;
+
+html {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    position: relative;
+    font-family: font.$kumbh-sans;
+}
+
+input,
+button {
+    font: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    font-size: f.rem(13);
+}
+
+a,
+a:visited,
+a:focus {
+    text-decoration: none;
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+}

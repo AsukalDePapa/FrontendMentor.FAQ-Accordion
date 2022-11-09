@@ -1,0 +1,187 @@
+@use '../utils/functions' as f;
+@use '../utils/breakpoints' as bp;
+
+body {
+    padding: f.rem(200) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(180deg, hsl(273, 75%, 66%), hsl(240, 73%, 65%));
+}
+
+main {
+    background-color: white;
+    border-radius: f.rem(24);
+    // padding: f.rem(24);
+    width: min(100%, f.rem(350));
+    display: grid;
+    grid-template-areas: 
+        'article-bg'
+        'article-FAQ';
+
+    @include bp.breakpointMin(medium-screen){
+        width: min(100%, f.rem(1000));
+        // overflow: hidden;
+        grid-template-areas: 
+            'article-bg article-FAQ';
+    }
+}
+
+.box {
+    display: none;
+
+    @include bp.breakpointMin(medium-screen) {
+        display: block;
+        position: absolute;
+        top: f.rem(210);
+        left: -20%;
+    }
+}
+
+article:nth-child(1){
+    grid-area: article-bg;
+}
+article:nth-child(2){
+    grid-area: article-FAQ;
+}
+
+article:nth-child(1) {
+    padding-bottom: f.rem(44);
+    transform: translateX(10%);
+    margin-top: f.rem(-130);
+    background-image: url(../images/bg-pattern-mobile.svg);
+    background-repeat: no-repeat;
+    background-position-y: f.rem(115);
+    background-size: 80%;
+
+    .woman{
+        width: 80%;
+    }
+
+    @include bp.breakpointMin(medium-screen){
+        position: relative;
+        background-image: url(../images/illustration-woman-online-desktop.svg), url(../images/bg-pattern-desktop.svg);
+        background-size: 110%, 200%;
+        background-position-x: f.rem(-85), f.rem(-505);
+        background-position-y: f.rem(60), f.rem(-260);
+        margin: 0;
+        transform: translateX(0);
+
+        .woman {
+            width: f.rem(450);
+            opacity: 0;
+        }
+    }
+}
+
+article:nth-child(2){
+    padding: f.rem(48) f.rem(32);
+
+    h1 {
+        margin-top: f.rem(-50);
+        font-size: f.rem(32);
+        text-align: center;
+        margin-bottom: f.rem(32);
+    }
+
+    .FAQ__question {
+        display: flex;
+        flex-direction: column;
+
+        .question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            img {
+                margin-top: f.rem(-10);
+            }
+        }
+
+        .FAQ__answer {
+            opacity: 0;
+            display: none;
+            padding-right: f.rem(12);
+            margin-bottom: f.rem(16);
+
+            p{
+                color: var(--text-clr); 
+            }
+        }
+
+        .show-animation {
+            display: block;
+            animation: FAQanimation 1s forwards;
+        }
+
+    }
+
+    .margin-bottom {
+        margin-bottom: f.rem(16);
+    }
+
+    @include bp.breakpointMin(medium-screen) {
+        padding-right: 90px;
+
+        h1 {
+            text-align: left;
+            font-size: f.rem(32);
+            margin-top: 0;
+        }
+
+        .FAQ__question {
+            width: f.rem(400);
+
+            .FAQ__answer {
+                p {
+                    font-size: f.rem(14);
+                }
+            }
+        }
+    }
+}
+
+.border-bottom {
+    border-bottom: var(--border-bttm);
+}
+
+h2{
+    color: var(--text-clr);  
+    font-size: f.rem(14);      
+    font-weight: 700;
+    margin-bottom: f.rem(10);
+
+    @include bp.breakpointMin(medium-screen){
+        font-size: f.rem(16);
+    }
+}
+
+.hover {
+    &:hover {
+        color: var(--hover-txt);
+    }
+}
+
+@keyframes FAQanimation {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+.active {
+    h2 {
+        color: var(--active);
+    }
+    img{
+        transform: rotate(180deg);
+    }
+}
+
+
+
